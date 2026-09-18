@@ -122,7 +122,18 @@ state folder privately. Software upgrades do not replace either database.
 
 ## Tests
 
-`python -m unittest discover -s tests` validates this town's self-descriptions.
+`python -m unittest discover -s tests -v` validates the self-descriptions and
+starts an isolated relay, provider worker and the actual `run.py` server. It runs
+the documented publish/register commands, checks multi-page registration,
+updates, withdrawals, public lookup/history and persistence after a process
+restart. No live town data is changed. CI runs this on Python 3.11 and 3.13.
+
+`python scripts/check_live.py` checks the public deployment read-only: health,
+relay advertisements, catalogue validation, search and record history. A separate
+GitHub Actions workflow runs it every six hours and can be triggered manually.
+Failures are visible in Actions; these checks detect regressions and outages,
+but do not guarantee continuous availability.
+
 The starter pack tests authenticated registration, provider isolation, revision
 mismatches, withdrawals, persistence and live relay round trips. Registration
 fetches are bounded to 90 seconds; a slow/offline provider returns a failure and
