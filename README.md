@@ -103,6 +103,9 @@ python3 -m venv .venv
 .venv/bin/python run.py --state ~/.config/wasteland-fair
 ```
 
+If system Python lacks `venv`/`ensurepip` and `uv` is installed, use
+`uv venv .venv` followed by `uv pip install --python .venv/bin/python -e .`.
+
 Local UI: **http://127.0.0.1:8396/**. `--port` selects another port. Use a reverse
 proxy for public HTTPS. The [systemd unit](deploy/wasteland-fair-city.service)
 uses this repository and its virtual environment.

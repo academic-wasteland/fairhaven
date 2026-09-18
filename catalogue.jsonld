@@ -88,10 +88,10 @@
       "outputs": [
         {
           "@type": "http://semanticscience.org/resource/SIO_000015",
-          "title": "Catalogue records or registration receipt",
-          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "title": "Revision-bound registration receipt",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
           "format": "application/json",
-          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+          "constraints": "Receipt contains authenticated owner, accepted revision, timestamp and record count. No resource data or credentials are transferred."
         }
       ],
       "access": {
@@ -144,9 +144,9 @@
       "outputs": [
         {
           "@type": "http://semanticscience.org/resource/SIO_000015",
-          "title": "Catalogue records or registration receipt",
+          "title": "Page of indexed catalogue descriptions",
           "semanticType": "http://semanticscience.org/resource/SIO_000089",
-          "format": "application/ld+json",
+          "format": "application/json",
           "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
         }
       ],
@@ -200,9 +200,9 @@
       "outputs": [
         {
           "@type": "http://semanticscience.org/resource/SIO_000015",
-          "title": "Catalogue records or registration receipt",
+          "title": "Page of indexed catalogue descriptions",
           "semanticType": "http://semanticscience.org/resource/SIO_000089",
-          "format": "application/ld+json",
+          "format": "application/json",
           "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
         }
       ],
@@ -256,10 +256,10 @@
       "outputs": [
         {
           "@type": "http://semanticscience.org/resource/SIO_000015",
-          "title": "Catalogue records or registration receipt",
-          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "title": "Profile documentation and discovery guidance",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
           "format": "application/json",
-          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+          "constraints": "Guide text and links; the vocabulary is available at https://leechuck.de/wasteland-fair/vocabulary as text/turtle."
         }
       ],
       "access": {
