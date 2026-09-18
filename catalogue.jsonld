@@ -1,0 +1,279 @@
+{
+  "@context": {
+    "title": "http://purl.org/dc/terms/title",
+    "description": "http://purl.org/dc/terms/description",
+    "version": "http://www.w3.org/ns/dcat#version",
+    "keywords": "http://www.w3.org/ns/dcat#keyword",
+    "license": {
+      "@id": "http://purl.org/dc/terms/license",
+      "@type": "@id"
+    },
+    "subjects": {
+      "@id": "http://purl.org/dc/terms/subject",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "publisher": {
+      "@id": "http://purl.org/dc/terms/publisher",
+      "@type": "@id"
+    },
+    "inputs": {
+      "@id": "https://leechuck.de/wasteland-fair/vocabulary#expectsInput",
+      "@container": "@set"
+    },
+    "outputs": {
+      "@id": "https://leechuck.de/wasteland-fair/vocabulary#describesOutput",
+      "@container": "@set"
+    },
+    "semanticType": {
+      "@id": "https://leechuck.de/wasteland-fair/vocabulary#semanticType",
+      "@type": "@id"
+    },
+    "format": "http://purl.org/dc/terms/format",
+    "constraints": "https://leechuck.de/wasteland-fair/vocabulary#constraints",
+    "access": "https://leechuck.de/wasteland-fair/vocabulary#access",
+    "town": "https://leechuck.de/wasteland-fair/vocabulary#town",
+    "resident": "https://leechuck.de/wasteland-fair/vocabulary#resident",
+    "operation": "https://leechuck.de/wasteland-fair/vocabulary#operation",
+    "requirements": "https://leechuck.de/wasteland-fair/vocabulary#requirements",
+    "cost": "https://leechuck.de/wasteland-fair/vocabulary#cost",
+    "contact": "https://leechuck.de/wasteland-fair/vocabulary#contact",
+    "documentation": {
+      "@id": "https://leechuck.de/wasteland-fair/vocabulary#documentation",
+      "@type": "@id"
+    },
+    "provenance": "http://purl.org/dc/terms/provenance",
+    "limitations": "https://leechuck.de/wasteland-fair/vocabulary#limitations",
+    "example": {
+      "@id": "https://leechuck.de/wasteland-fair/vocabulary#example",
+      "@type": "@json"
+    },
+    "kind": "https://leechuck.de/wasteland-fair/vocabulary#kind"
+  },
+  "@graph": [
+    {
+      "@id": "urn:wasteland:fair:fairhaven:registration",
+      "@type": "http://www.w3.org/ns/dcat#DataService",
+      "kind": "service",
+      "publisher": "urn:wasteland:town:fairhaven",
+      "title": "Register a town catalogue",
+      "description": "Validate and index the authenticated requesting town\u2019s published service/resource catalogue. Return a revision-bound registration receipt.",
+      "version": "1.0.0",
+      "keywords": [
+        "FAIR",
+        "registry",
+        "services",
+        "resources",
+        "discovery",
+        "JSON-LD"
+      ],
+      "subjects": [
+        "http://www.w3.org/ns/dcat#DataService",
+        "http://www.w3.org/ns/dcat#Dataset",
+        "http://semanticscience.org/resource/SIO_000015"
+      ],
+      "license": "https://github.com/academic-wasteland/fairhaven/blob/main/LICENSES.md#catalogue",
+      "provenance": "Academic Wasteland FAIRhaven; catalogue descriptions authored for this town. Provider records remain attributed to their original towns.",
+      "limitations": "Metadata validation is not scientific validation or access approval. Provider declarations can be incomplete. Each indexed record retains its own reuse terms; no blanket license applies to provider data or outputs.",
+      "documentation": "https://github.com/academic-wasteland/fairhaven#readme",
+      "inputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Published catalogue SHA-256 revision",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
+          "format": "application/json",
+          "constraints": "Only registered relay towns may submit. Registration fetches only the sender\u2019s bounded published catalogue; no arbitrary URL callbacks. The example zero digest must be replaced by the digest of the actual published catalogue."
+        }
+      ],
+      "outputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Catalogue records or registration receipt",
+          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "format": "application/json",
+          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+        }
+      ],
+      "access": {
+        "town": "fairhaven",
+        "resident": "guide",
+        "operation": "fair-register",
+        "requirements": "Public metadata is readable by HTTPS; relay operations require a registered town. Providers may register only their own descriptions.",
+        "cost": "No fee for hackathon use; relay quotas apply.",
+        "contact": "fairhaven/guide"
+      },
+      "example": {
+        "operation": "fair-register",
+        "revision": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    {
+      "@id": "urn:wasteland:fair:fairhaven:discovery",
+      "@type": "http://www.w3.org/ns/dcat#DataService",
+      "kind": "service",
+      "publisher": "urn:wasteland:town:fairhaven",
+      "title": "Discover services and resources",
+      "description": "Search provider-owned descriptions by keywords and semantic input/output types; retrieve records and their metadata checks.",
+      "version": "1.0.0",
+      "keywords": [
+        "FAIR",
+        "registry",
+        "services",
+        "resources",
+        "discovery",
+        "JSON-LD"
+      ],
+      "subjects": [
+        "http://www.w3.org/ns/dcat#DataService",
+        "http://www.w3.org/ns/dcat#Dataset",
+        "http://semanticscience.org/resource/SIO_000015"
+      ],
+      "license": "https://github.com/academic-wasteland/fairhaven/blob/main/LICENSES.md#catalogue",
+      "provenance": "Academic Wasteland FAIRhaven; catalogue descriptions authored for this town. Provider records remain attributed to their original towns.",
+      "limitations": "Metadata validation is not scientific validation or access approval. Provider declarations can be incomplete. Each indexed record retains its own reuse terms; no blanket license applies to provider data or outputs.",
+      "documentation": "https://github.com/academic-wasteland/fairhaven#readme",
+      "inputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Keywords, semantic type IRI and page offset",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
+          "format": "application/json",
+          "constraints": "Only registered relay towns may submit. Registration fetches only the sender\u2019s bounded published catalogue; no arbitrary URL callbacks."
+        }
+      ],
+      "outputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Catalogue records or registration receipt",
+          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "format": "application/ld+json",
+          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+        }
+      ],
+      "access": {
+        "town": "fairhaven",
+        "resident": "guide",
+        "operation": "fair-search",
+        "requirements": "Public metadata is readable by HTTPS; relay operations require a registered town. Providers may register only their own descriptions.",
+        "cost": "No fee for hackathon use; relay quotas apply.",
+        "contact": "fairhaven/guide"
+      },
+      "example": {
+        "operation": "fair-search",
+        "query": "phenotype"
+      }
+    },
+    {
+      "@id": "urn:wasteland:fair:fairhaven:registry",
+      "@type": "http://www.w3.org/ns/dcat#Dataset",
+      "kind": "dataset",
+      "publisher": "urn:wasteland:town:fairhaven",
+      "title": "FAIRhaven service and resource registry",
+      "description": "Persistent collection of provider-attributed descriptions, revisions, withdrawal markers and version-bound observations.",
+      "version": "1.0.0",
+      "keywords": [
+        "FAIR",
+        "registry",
+        "services",
+        "resources",
+        "discovery",
+        "JSON-LD"
+      ],
+      "subjects": [
+        "http://www.w3.org/ns/dcat#DataService",
+        "http://www.w3.org/ns/dcat#Dataset",
+        "http://semanticscience.org/resource/SIO_000015"
+      ],
+      "license": "https://github.com/academic-wasteland/fairhaven/blob/main/LICENSES.md#catalogue",
+      "provenance": "Academic Wasteland FAIRhaven; catalogue descriptions authored for this town. Provider records remain attributed to their original towns.",
+      "limitations": "Metadata validation is not scientific validation or access approval. Provider declarations can be incomplete. Each indexed record retains its own reuse terms; no blanket license applies to provider data or outputs.",
+      "documentation": "https://github.com/academic-wasteland/fairhaven#readme",
+      "inputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Search parameters",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
+          "format": "application/json",
+          "constraints": "Only registered relay towns may submit. Registration fetches only the sender\u2019s bounded published catalogue; no arbitrary URL callbacks."
+        }
+      ],
+      "outputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Catalogue records or registration receipt",
+          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "format": "application/ld+json",
+          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+        }
+      ],
+      "access": {
+        "town": "fairhaven",
+        "resident": "guide",
+        "operation": "fair-search",
+        "requirements": "Public metadata is readable by HTTPS; relay operations require a registered town. Providers may register only their own descriptions.",
+        "cost": "No fee for hackathon use; relay quotas apply.",
+        "contact": "fairhaven/guide"
+      },
+      "example": {
+        "operation": "fair-search",
+        "query": "phenotype"
+      }
+    },
+    {
+      "@id": "urn:wasteland:fair:fairhaven:metadata-profile",
+      "@type": "http://semanticscience.org/resource/SIO_000015",
+      "kind": "resource",
+      "publisher": "urn:wasteland:town:fairhaven",
+      "title": "Wasteland FAIR metadata profile and vocabulary",
+      "description": "Documentation and vocabulary for provider-owned JSON-LD catalogues: DCAT service/dataset types, SIO-aligned inputs and outputs, provenance and explicit reuse terms.",
+      "version": "1.0.0",
+      "keywords": [
+        "FAIR",
+        "registry",
+        "services",
+        "resources",
+        "discovery",
+        "JSON-LD"
+      ],
+      "subjects": [
+        "http://www.w3.org/ns/dcat#DataService",
+        "http://www.w3.org/ns/dcat#Dataset",
+        "http://semanticscience.org/resource/SIO_000015"
+      ],
+      "license": "https://github.com/academic-wasteland/fairhaven/blob/main/LICENSES.md#catalogue",
+      "provenance": "Academic Wasteland FAIRhaven; catalogue descriptions authored for this town. Provider records remain attributed to their original towns.",
+      "limitations": "Metadata validation is not scientific validation or access approval. Provider declarations can be incomplete. Each indexed record retains its own reuse terms; no blanket license applies to provider data or outputs.",
+      "documentation": "https://github.com/academic-wasteland/fairhaven#readme",
+      "inputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Guide request",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
+          "format": "application/json",
+          "constraints": "Only registered relay towns may submit. Registration fetches only the sender\u2019s bounded published catalogue; no arbitrary URL callbacks."
+        }
+      ],
+      "outputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Catalogue records or registration receipt",
+          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "format": "application/json",
+          "constraints": "One record per search page. Metadata only; scientific resources and credentials are not transferred."
+        }
+      ],
+      "access": {
+        "town": "fairhaven",
+        "resident": "guide",
+        "operation": "describe",
+        "requirements": "Public metadata is readable by HTTPS; relay operations require a registered town. Providers may register only their own descriptions.",
+        "cost": "No fee for hackathon use; relay quotas apply.",
+        "contact": "fairhaven/guide"
+      },
+      "example": {
+        "operation": "describe",
+        "text": "How do I publish FAIR descriptions?"
+      }
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "fairhaven",
+  "display": "FAIRhaven",
+  "description": "Provider-owned service and resource registry for the Academic Wasteland",
+  "contact": "guide",
+  "catalogue": "https://leechuck.de/wasteland-fair/",
+  "repository": "https://github.com/academic-wasteland/fairhaven",
+  "capabilities": [
+    "message",
+    "describe",
+    "fair-register",
+    "fair-registration",
+    "fair-search",
+    "fair-record",
+    "fair-catalogue"
+  ],
+  "interests": [
+    "FAIR services",
+    "semantic interoperability",
+    "resource discovery",
+    "metadata provenance"
+  ]
+}

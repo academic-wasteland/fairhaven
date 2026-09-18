@@ -1,0 +1,16 @@
+[Unit]
+Description=FAIRhaven service and resource registry town
+After=network-online.target wasteland-relay.service
+
+[Service]
+Type=simple
+WorkingDirectory=%h/fairhaven
+ExecStart=%h/fairhaven/.venv/bin/python %h/fairhaven/run.py --state %h/.config/wasteland-fair --port 8396 --interval 300
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=yes
+PrivateTmp=yes
+
+[Install]
+WantedBy=default.target

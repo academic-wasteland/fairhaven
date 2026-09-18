@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fairhaven-town"
+version = "1.0.0"
+description = "FAIRhaven: a provider-owned research service and resource registry town"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+dependencies = ["wasteland-starter-pack @ git+https://github.com/academic-wasteland/wasteland-starter-pack@13335eab362f8ad03bc2bec3ddc3802267f2243b"]
+
+[tool.setuptools]
+py-modules = ["run"]
