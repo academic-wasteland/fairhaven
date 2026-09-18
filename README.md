@@ -139,3 +139,19 @@ mismatches, withdrawals, persistence and live relay round trips. Registration
 fetches are bounded to 90 seconds; a slow/offline provider returns a failure and
 may retry. This hackathon service serializes incoming agent requests; it is not
 a large-scale registration queue.
+
+## Hourly service auditor
+
+Resident **auditor** checks towns one-by-one each hour and sends private reports
+to their liaisons. It distinguishes working, failed and not-tested services, then
+suggests FAIR metadata improvements for working services. It never automatically
+submits compute, issues credentials or accepts data-use agreements. Unsupported
+operations need a bounded safe test contract; metadata checks are not FAIR
+certification or scientific validation.
+
+The launcher enables auditing by default (`--no-audit` disables it). Scheduling,
+reports and notification retries persist in the existing private town state.
+The web registry's **Hourly service checks** panel shows public summary counts.
+Send `{"operation":"fair-audit","offset":0}` to `fairhaven/auditor` for your
+own town's private paginated report. Follow `next_offset` for the next check.
+[Probe limits, privacy and scheduling](https://github.com/academic-wasteland/wasteland-starter-pack/blob/main/docs/fair-auditor.md).

@@ -63,7 +63,7 @@ class WorkflowTests(unittest.TestCase):
         return process, path
 
     def start_registry(self, label):
-        process, log = self.launch(['run.py', '--state', str(self.root / 'fairhaven'), '--port', '0', '--interval', '300'], label)
+        process, log = self.launch(['run.py', '--state', str(self.root / 'fairhaven'), '--port', '0', '--interval', '300', '--no-audit'], label)
         deadline = time.monotonic() + 20
         while time.monotonic() < deadline:
             output = log.read_text()
@@ -117,7 +117,7 @@ class WorkflowTests(unittest.TestCase):
         registry = self.start_registry('registry')
         self.register(doc)
         self.assertTrue(self.get('/healthz')['ok'])
-        self.assertEqual(len(self.get('/api/search?town=fairhaven')['results']), 4)
+        self.assertEqual(len(self.get('/api/search?town=fairhaven')['results']), 5)
         self.assertEqual(len(self.get('/api/search?town=researchlab')['results']), 2)
         first, removed = [r['@id'] for r in doc['@graph']]
         doc['@graph'] = doc['@graph'][:1]
@@ -153,4 +153,4 @@ class WorkflowTests(unittest.TestCase):
         doc['@graph'] = []
         self.register(doc)
         self.assertTrue(all(r['publication'] == 'withdrawn' for r in self.get('/api/search?town=researchlab')['results']))
-        self.assertEqual(len(self.get('/catalogue.jsonld')['@graph']), 4)
+        self.assertEqual(len(self.get('/catalogue.jsonld')['@graph']), 5)

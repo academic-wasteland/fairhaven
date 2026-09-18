@@ -274,6 +274,62 @@
         "operation": "describe",
         "text": "How do I publish FAIR descriptions?"
       }
+    },
+    {
+      "@id": "urn:wasteland:fair:fairhaven:auditor",
+      "@type": "http://www.w3.org/ns/dcat#DataService",
+      "kind": "service",
+      "publisher": "urn:wasteland:town:fairhaven",
+      "title": "Hourly service checks and FAIR improvement reports",
+      "description": "Auditor contacts towns sequentially, runs bounded read-only probes, assesses metadata for working services and sends private improvement reports to their liaisons.",
+      "version": "1.0.0",
+      "keywords": [
+        "FAIR",
+        "registry",
+        "services",
+        "resources",
+        "discovery",
+        "JSON-LD"
+      ],
+      "subjects": [
+        "http://www.w3.org/ns/dcat#DataService",
+        "http://www.w3.org/ns/dcat#Dataset",
+        "http://semanticscience.org/resource/SIO_000015"
+      ],
+      "license": "https://github.com/academic-wasteland/fairhaven/blob/main/LICENSES.md#catalogue",
+      "provenance": "Academic Wasteland FAIRhaven; catalogue descriptions authored for this town. Provider records remain attributed to their original towns.",
+      "limitations": "Not scientific validation or FAIR certification. Unsupported, credential-gated and consequential operations are not automatically executed. Reports never grant access. Only the requesting town may retrieve its report.",
+      "documentation": "https://github.com/academic-wasteland/fairhaven#readme",
+      "inputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Audit report page offset",
+          "semanticType": "http://semanticscience.org/resource/SIO_000015",
+          "format": "application/json",
+          "constraints": "Nonnegative offset. Report owner is the authenticated requesting town, never a caller-supplied town."
+        }
+      ],
+      "outputs": [
+        {
+          "@type": "http://semanticscience.org/resource/SIO_000015",
+          "title": "Private dated audit report page",
+          "semanticType": "http://semanticscience.org/resource/SIO_000089",
+          "format": "application/json",
+          "constraints": "One service check per page, with observed outcome, metadata checks and suggestions. Public HTTP status exposes only town-level counts and timestamps."
+        }
+      ],
+      "access": {
+        "town": "fairhaven",
+        "resident": "auditor",
+        "operation": "fair-audit",
+        "requirements": "Public metadata is readable by HTTPS; relay operations require a registered town. Providers may register only their own descriptions.",
+        "cost": "No fee for hackathon use; relay quotas apply.",
+        "contact": "fairhaven/auditor"
+      },
+      "example": {
+        "operation": "fair-audit",
+        "offset": 0
+      }
     }
   ]
 }

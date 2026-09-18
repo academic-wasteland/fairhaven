@@ -21,13 +21,13 @@ def check(registry, relay):
         owners.setdefault(owner, []).append(record)
     for owner, items in owners.items():
         validate(document(items), owner)
-    expected = {'fair-register', 'fair-registration', 'fair-search', 'fair-record', 'fair-catalogue'}
+    expected = {'fair-register', 'fair-registration', 'fair-search', 'fair-record', 'fair-catalogue', 'fair-audit', 'resident:auditor'}
     towns = get(relay.rstrip('/') + '/.well-known/wasteland.json')['towns']
     town = next(t for t in towns if t['name'] == 'fairhaven')
     if not expected.issubset(town['capabilities']):
         raise ValueError('FAIRhaven is missing advertised operations')
     own = get(registry + '/api/search?town=fairhaven')['results']
-    if len(own) != 4 or any(r['publication'] != 'listed' for r in own):
+    if len(own) != 5 or any(r['publication'] != 'listed' for r in own):
         raise ValueError('FAIRhaven self-descriptions are missing')
     for row in own:
         identifier = row['record']['@id']
